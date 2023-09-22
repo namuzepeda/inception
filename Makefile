@@ -18,7 +18,7 @@ clean:
 .PHONY: all re down clean
 
 check-docker:
-    @@f [ -z "$(shell command -v docker 2> /dev/null)" ]; then \
+    @f [ -z "$(shell command -v docker 2> /dev/null)" ]; then \
 		echo "Installing Docker..."
         sudo apt-get update -y
 		sudo apt-get upgrade -y
