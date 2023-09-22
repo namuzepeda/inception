@@ -18,7 +18,7 @@ clean:
 .PHONY: all re down clean
 
 check-docker:
-    @f [ -z "$(shell command -v docker 2> /dev/null)" ]; then \
+    @if [ -z "$$(command -v docker 2> /dev/null)" ]; then \
 		echo "Installing Docker..."
         sudo apt-get update -y
 		sudo apt-get upgrade -y
@@ -32,7 +32,7 @@ check-docker:
     fi
 
 check-docker-compose:	
-	@if [ -z "$(shell command -v docker-compose 2> /dev/null)" ]; then \
+	@if [ -z "$$(command -v docker-compose 2> /dev/null)" ]; then \
 		echo "Installing docker-compose; \
 		sudo apt-get install -y docker-compose; \
 	else \
