@@ -12,14 +12,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: $HOME/data/wordpress
+      device: $HOME/nmunoz.42.fr/wordpress
   db:
     driver: local
     name: db
     driver_opts:
       type: none
       o: bind
-      device: $HOME/data/mariadb
+      device: $HOME/nmunoz.42.fr/mariadb
 
 services:
   mariadb:
