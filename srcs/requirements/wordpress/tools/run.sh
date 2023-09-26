@@ -18,9 +18,9 @@ if [ ! -f /var/www/html/wp-config.php ]; then
     echo "WordPress script: Downloading WordPress Core..."
 	wp core download --allow-root;
     echo "WordPress script: Downloaded..."
-	mv /var/www/wp-config-sample.php /var/www/html/wp-config.php
 	echo "WordPress plugin: creating users..."
 	wp core install --allow-root --url=${WP_URL} --title=${WP_TITLE} --admin_user=${WP_ADMIN_LOGIN} --admin_password=${WP_ADMIN_PASSWORD} --admin_email=${WP_ADMIN_EMAIL}
+	wp config create
 	wp user create --allow-root ${WP_USER_LOGIN} ${WP_USER_EMAIL} --user_pass=${WP_USER_PASSWORD};
 	echo "WordPress: set up!"
 fi
