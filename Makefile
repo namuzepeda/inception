@@ -17,4 +17,4 @@ clean:
 .PHONY: all re down clean
 
 init-script:
-	sudo ./srcs/init_script.sh
+	sudo bash ./srcs/tools/init_script.sh
