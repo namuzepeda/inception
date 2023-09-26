@@ -18,6 +18,8 @@ clean:
 	docker rmi -f $$(docker images -qa);\
 	docker volume rm $$(docker volume ls -q);\
 	docker network rm $$(docker network ls -q);\
+	rm -rf $(HOME)/nmunoz.42.fr/wordpress
+	rm -rf $(HOME)/nmunoz.42.fr/mariadb
 
 .PHONY: all re down clean
 
