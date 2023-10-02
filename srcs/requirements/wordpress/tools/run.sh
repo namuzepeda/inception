@@ -7,22 +7,19 @@
 	touch /run/php/php7.3-fpm.pid;
 
 if [ ! -f /var/www/html/wp-config.php ]; then
-	echo "WordPress script starting..."
-    mkdir -p /var/www/html
-    echo "WordPress script: Downloading plugin..."
-	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar;
-    echo "WordPress script: Downloaded..."
-	chmod +x wp-cli.phar; 
-	mv wp-cli.phar /usr/local/bin/wp;
-	cd /var/www/html;
-    echo "WordPress script: Downloading WordPress Core..."
-	wp core download --allow-root ;
-    echo "WordPress script: Downloaded..."
-	echo "WordPress plugin: creating users..."
-	wp config create --allow-root --dbname=${MYSQL_DATABASE} --dbuser=${MYSQL_USER} --dbpass=${MYSQL_PASSWORD} --dbhost=mariadb:3306 --path='/var/www/html'
-	wp core install --allow-root --url=${WP_URL} --title=${WP_TITLE} --admin_user=${WP_ADMIN_LOGIN} --admin_password=${WP_ADMIN_PASSWORD} --admin_email=${WP_ADMIN_EMAIL} --path='/var/www/html'
-	wp user create --allow-root ${WP_USER_LOGIN} ${WP_USER_EMAIL} --user_pass=${WP_USER_PASSWORD} --path='/var/www/html';
-	echo "WordPress: set up!"
+	cd /var/www/html
+	wget http://wordpress.org/latest.tar.gz
+	tar xfz latest.tar.gz
+	mv wordpress/* .
+	rm -rf latest.tar.gz
+	rm -rf wordpress
+
+	#Inport env variables in the config file
+	sed -i "s/username_here/$MYSQL_USER/g" wp-config-sample.php
+	sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config-sample.php
+	sed -i "s/localhost/$MYSQL_HOST/g" wp-config-sample.php
+	sed -i "s/database_name_here/$MYSQL_DATABASE/g" wp-config-sample.php
+	cp wp-config-sample.php wp-config.php"
 fi
 
 exec "$@"
