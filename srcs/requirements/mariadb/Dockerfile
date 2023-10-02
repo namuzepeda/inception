@@ -16,4 +16,4 @@ RUN chmod +x /usr/local/bin/run_mariadb.sh
 
 ENTRYPOINT ["/usr/local/bin/run_mariadb.sh"]
 
-CMD ["mysqld", "--datadir=/var/lib/mysql"]
+CMD ["/usr/bin/mysqld_safe", "--datadir=/var/lib/mysql"]

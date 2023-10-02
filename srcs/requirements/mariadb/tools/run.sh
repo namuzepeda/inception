@@ -5,6 +5,7 @@ set -eux
 DIRECTORY_DATABASE=/var/lib/mysql/wordpress
 
 if [ ! -d "$DIRECTORY_DATABASE" ]; then
+	/usr/bin/mysqld_safe --datadir=/var/lib/mysql
 	echo "CREATE DATABASE IF NOT EXISTS ${MYSQL_DATABASE};" | mysql -u root
 
 	echo "ALTER USER 'root'@'%' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';" | mysql -u root
