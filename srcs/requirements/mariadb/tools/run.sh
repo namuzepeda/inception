@@ -2,7 +2,7 @@
 
 
 
-service mysqld start
+service mariadb start
 
 
 echo "CREATE DATABASE IF NOT EXISTS ${MYSQL_DATABASE} ;" > db1.sql
@@ -17,4 +17,4 @@ mysql < db1.sql
 
 kill $(cat /run/mysqld/mysqld.pid)
 
-service mysqld start
+service mariadb start
