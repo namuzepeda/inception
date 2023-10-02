@@ -8,20 +8,20 @@
 
 if [ ! -f /var/www/html/wp-config.php ]; then
 	echo "WordPress script starting..."
-    mkdir -p /var/www/html
+    mkdir -p /var/www/wordpress
     echo "WordPress script: Downloading plugin..."
 	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar;
     echo "WordPress script: Downloaded..."
 	chmod +x wp-cli.phar; 
 	mv wp-cli.phar /usr/local/bin/wp;
-	cd /var/www/html;
+	cd /var/www/wordpress;
     echo "WordPress script: Downloading WordPress Core..."
-	wp core download --allow-root;
+	wp core download --allow-root ;
     echo "WordPress script: Downloaded..."
 	echo "WordPress plugin: creating users..."
-	wp config create --allow-root --dbname=${MYSQL_DATABASE} --dbuser=${MYSQL_USER} --dbpass=${MYSQL_PASSWORD} --dbhost=mariadb:3306 --path='/var/www/wordpress'
+	wp config create --allow-root --dbname=${MYSQL_DATABASE} --dbuser=${MYSQL_USER} --dbpass=${MYSQL_PASSWORD} --dbhost=mariadb:3306
 	wp core install --allow-root --url=${WP_URL} --title=${WP_TITLE} --admin_user=${WP_ADMIN_LOGIN} --admin_password=${WP_ADMIN_PASSWORD} --admin_email=${WP_ADMIN_EMAIL}
-	wp user create --allow-root ${WP_USER_LOGIN} ${WP_USER_EMAIL} --user_pass=${WP_USER_PASSWORD};
+	wp user create --allow-root ${WP_USER_LOGIN} ${WP_USER_EMAIL} --user_pass=${WP_USER_PASSWORD}
 	echo "WordPress: set up!"
 fi
 
