@@ -2,7 +2,7 @@
 
 
 
-service mysql start 
+systemctl start mysqld
 
 
 echo "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE ;" > db1.sql
@@ -13,6 +13,6 @@ echo "FLUSH PRIVILEGES;" >> db1.sql
 
 mysql < db1.sql
 
-kill $(cat /var/run/mysqld/mysqld.pid)
+kill $(cat /run/mysqld/mysqld.pid)
 
-mysqld
+systemctl start mysqld

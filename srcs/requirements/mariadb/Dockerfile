@@ -11,4 +11,4 @@ RUN chown -R mysql:mysql /var/lib/mysql
 COPY ./tools/run.sh /run_mariadb.sh
 RUN chmod +x /run_mariadb.sh
 
-ENTRYPOINT ["/run_mariadb.sh"]
+CMD ["/run_mariadb.sh"]
