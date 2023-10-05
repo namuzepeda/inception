@@ -1,6 +1,6 @@
 FROM debian:bullseye
 
-RUN apt-get update && apt-get upgrade && apt-get -y install php7.4 php-mysql php-fpm wget
+RUN apt-get update -y && apt-get upgrade -y && apt-get -y install php7.4 php-mysql php-fpm wget
 
 RUN apt-get install default-mysql-client -y
 
