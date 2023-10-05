@@ -29,6 +29,8 @@ wp config create --allow-root \
   --dbuser="$MYSQL_USER" \
   --dbpass="$MYSQL_PASSWORD"
 
+echo "Installing wordpress, please wait..."
+
 wp core install --allow-root \
   --url="$WP_URL" \
   --title="$WP_TITLE" \
@@ -36,12 +38,14 @@ wp core install --allow-root \
   --admin_password="$WP_ADMIN_PASSWORD" \
   --admin_email="$WP_ADMIN_EMAIL"
 
+echo "Creating wordpress user, please wait..."
+
 # Crear un usuario de prueba
 wp user create --allow-root \
   "$WP_USER_LOGIN" \
   "$WP_USER_EMAIL" \
   --user_pass="$WP_USER_PASSWORD"
 
-echo "WordPress se ha instalado correctamente en /var/www/html."
+echo "Wordpress installed, everything ready !"
 
 exec "$@"
