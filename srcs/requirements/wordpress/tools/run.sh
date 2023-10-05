@@ -12,13 +12,15 @@ if [ -d "/var/www/html/wp-config.php" ]; then
   exit 1
 fi
 
-curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-chmod +x wp-cli.phar
-sudo mv wp-cli.phar /usr/local/bin/wp
-
-sudo mkdir -p /var/www/html
+mkdir -p /var/www/html
 
 cd /var/www/html
+
+curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+chmod +x wp-cli.phar
+mv wp-cli.phar /usr/local/bin/wp
+
+
 wp core download --allow-root
 
 wp config create --allow-root \
