@@ -4,24 +4,24 @@ all:
 	echo "Launching"
 	@mkdir -p $(HOME)/nmunoz.42.fr/wordpress
 	@mkdir -p $(HOME)/nmunoz.42.fr/mariadb
-	sudo docker-compose -f srcs/docker-compose.yml up --build -d > /dev/null 2> /dev/null
+	sudo docker compose -f srcs/docker-compose.yml up --build -d > /dev/null 2> /dev/null
 	echo "Launched"
 
 reload:
 	echo "Launching"
 	@mkdir -p $(HOME)/nmunoz.42.fr/wordpress
 	@mkdir -p $(HOME)/nmunoz.42.fr/mariadb
-	sudo docker-compose -f srcs/docker-compose.yml up --build -d > /dev/null 2> /dev/null
+	sudo docker compose -f srcs/docker-compose.yml up --build -d > /dev/null 2> /dev/null
 	echo "Launched"
 
 stop:
 	echo "Stopping"
-	sudo docker-compose -f srcs/docker-compose.yml down > /dev/null 2> /dev/null
+	sudo docker compose -f srcs/docker-compose.yml down > /dev/null 2> /dev/null
 	echo "Stopped"
 
 clean: stop
 	echo "Removing"
-	sudo docker-compose -f srcs/docker-compose.yml down --volumes --rmi all > /dev/null 2> /dev/null
+	sudo docker compose -f srcs/docker-compose.yml down --volumes --rmi all > /dev/null 2> /dev/null
 	echo "Removed"
 
 prune: clean
