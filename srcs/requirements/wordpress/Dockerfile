@@ -1,6 +1,6 @@
 FROM debian:buster
 
-RUN apt-get update && apt-get -y install php7.3 php-mysql php-fpm wget sendmail
+RUN apt-get update && apt-get -y install php7.3 php-mysql php-fpm wget
 
 RUN apt install default-mysql-client -y
 
