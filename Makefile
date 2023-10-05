@@ -32,7 +32,7 @@ prune: clean
 re: prune
 	echo "Waiting for 2 seconds..."
 	sleep 2
-	reload
+	$(make) reload
 
 .PHONY: all stop clean prune re reload
 .SILENT: all stop clean prune re reload
