@@ -27,13 +27,7 @@ clean: stop
 prune: clean
 	echo "Pruning"
 	sudo docker system prune -f
-	sudo docker buildx rm
 	echo "Pruned"
-
-re: prune
-	echo "Waiting for 2 seconds..."
-	sleep 2
-	$(MAKE) reload
 
 .PHONY: all stop clean prune re reload
 .SILENT: all stop clean prune re reload
