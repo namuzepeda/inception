@@ -1,14 +1,13 @@
-# -f: --file
 # -q: --quiet
 
-all: init_script
+all: init-script
 	echo "Launching"
 	@mkdir -p $(HOME)/nmunoz.42.fr/wordpress
 	@mkdir -p $(HOME)/nmunoz.42.fr/mariadb
 	sudo docker-compose -f srcs/docker-compose.yml up --build -d > /dev/null 2> /dev/null
 	echo "Launched"
 
-reload: init_script
+reload: init-script
 	echo "Launching"
 	@mkdir -p $(HOME)/nmunoz.42.fr/wordpress
 	@mkdir -p $(HOME)/nmunoz.42.fr/mariadb
