@@ -29,7 +29,10 @@ prune: clean
 	sudo docker system prune -f
 	echo "Pruned"
 
-re: prune reload
+re: prune
+	echo "Waiting for 2 seconds..."
+	sleep 2
+	reload
 
 .PHONY: all stop clean prune re reload
 .SILENT: all stop clean prune re reload
