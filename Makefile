@@ -1,9 +1,12 @@
-all: init_script
+# -f: --file
+# -q: --quiet
+
+all: init-script
 	echo "Launching"
 	sudo docker-compose -f srcs/docker-compose.yml up --build -d > /dev/null 2> /dev/null
 	echo "Launched"
 
-reload: init_script
+reload: init-script
 	echo "Launching"
 	sudo docker-compose -f srcs/docker-compose.yml up --build -d > /dev/null 2> /dev/null
 	echo "Launched"
@@ -30,4 +33,3 @@ init-script:
 
 .PHONY: all stop clean prune re reload
 .SILENT: all stop clean prune re reload
-
