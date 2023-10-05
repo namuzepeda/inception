@@ -12,18 +12,19 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: $HOME/data/wordpress
+      device: /home/nmunoz/data/wordpress
   db:
     driver: local
     name: db
     driver_opts:
       type: none
       o: bind
-      device: $HOME/data/mariadb
+      device: /home/nmunoz/data/mariadb
 
 services:
   mariadb:
     container_name: mariadb
+    image: mariadb
     build: ./requirements/mariadb
     env_file:
       - .env
@@ -35,6 +36,7 @@ services:
 
   wordpress:
     container_name: wordpress
+    image: wordpress
     build: ./requirements/wordpress
     env_file:
       - .env
@@ -48,6 +50,7 @@ services:
 
   nginx:
     container_name: nginx
+    image: nginx
     build: ./requirements/nginx
     ports:
       - "443:443"
