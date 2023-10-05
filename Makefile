@@ -1,9 +1,9 @@
-all: rambo ramboprune
+all: init_script
 	echo "Launching"
 	sudo docker-compose -f srcs/docker-compose.yml up --build -d > /dev/null 2> /dev/null
 	echo "Launched"
 
-reload: ramboprune
+reload: init_script
 	echo "Launching"
 	sudo docker-compose -f srcs/docker-compose.yml up --build -d > /dev/null 2> /dev/null
 	echo "Launched"
@@ -25,5 +25,9 @@ prune: clean
 
 re: prune reload
 
+init-script:
+	sudo bash ./srcs/tools/init_script.sh
+
 .PHONY: all stop clean prune re reload
 .SILENT: all stop clean prune re reload
+
