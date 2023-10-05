@@ -1,16 +1,16 @@
 FROM debian:bullseye
 
-RUN apt-get update -y && apt-get upgrade -y && apt-get -y install php7.4 php-mysql php-fpm wget
+RUN apt-get update -y && apt-get upgrade -y && apt-get install -y php7.3 php-mysql php7.3-fpm wget
 
 RUN apt-get install default-mysql-client -y
 
 EXPOSE 9000
 
-COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d
+COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d
 COPY ./tools/run.sh /var/www/
 
 RUN chmod +x /var/www/run.sh
 
 ENTRYPOINT [ "/var/www/run.sh" ]
 
-CMD ["/usr/sbin/php-fpm7.4", "--nodaemonize"]
+CMD ["/usr/sbin/php-fpm7.3", "--nodaemonize"]
