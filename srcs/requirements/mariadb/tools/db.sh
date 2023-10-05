@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Start the MySQL service
-service mysql start
+service mariadb start
 
 # Wait for MySQL to start
 while ! mysqladmin ping -hlocalhost -u$MYSQL_USER -p$MYSQL_PASSWORD --silent; do
@@ -18,7 +18,7 @@ sudo mysql -e "FLUSH PRIVILEGES;"
 sudo mysql -e "CREATE DATABASE $MYSQL_DATABASE;"
 
 # Stop the MySQL service
-service mysql stop
+service mariadb stop
 
 # Start the MySQL service in the background (as a daemon)
-exec mysqld
+mysqld
