@@ -2,15 +2,15 @@
 
 all:
 	echo "Launching"
-	@mkdir -p $(HOME)/data/wordpress
-	@mkdir -p $(HOME)/data/mariadb
+	@mkdir -p /home/nmunoz/data/wordpress
+	@mkdir -p /home/nmunoz/data/mariadb
 	sudo docker compose -f srcs/docker-compose.yml up --build -d
 	echo "Launched"
 
 reload:
 	echo "Launching"
-	@mkdir -p $(HOME)/data/wordpress
-	@mkdir -p $(HOME)/data/mariadb
+	@mkdir -p /home/nmunoz/data/wordpress
+	@mkdir -p /home/nmunoz/data/mariadb
 	sudo docker compose -f srcs/docker-compose.yml up --build -d
 	echo "Launched"
 
