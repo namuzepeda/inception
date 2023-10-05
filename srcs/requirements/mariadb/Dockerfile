@@ -1,27 +1,12 @@
-FROM debian:buster-slim
+FROM debian:buster
 
-# Update the package database and install necessary packages
-# like MariaDB server and client, and Curl (a tool to transfer data from or to a server)
-RUN apt-get update && \
-    apt-get install -y \
-    mariadb-server \
-    curl && \
-    # Remove the package list to reduce the size of the image
-    rm -rf /var/lib/apt/lists/*
+RUN apt update && apt install -y mariadb-server sudo && apt clean
 
-# Create a directory for the MariaDB UNIX socket file and set the proper permissions
-RUN mkdir -p /var/run/mysqld && \
-    chown -R mysql:mysql /var/run/mysqld && \
-    chmod 777 /var/run/mysqld
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 
-# Copy MariaDB configuration scripts into the image
-COPY ./tools/mariadb.sh /usr/local/bin/
+COPY ./tools/db.sh /
 
-# Set the copied scripts as executable
-RUN chmod +x /usr/local/bin/mariadb.sh
+RUN chmod +x ./db.sh
 
-# Define the script to be run when the container starts
-ENTRYPOINT ["/usr/local/bin/mariadb.sh"]
-
-# Set the default command to run the MariaDB server with a specific bind address
-CMD ["mysqld", "--bind-address=0.0.0.0"]
+# CMD ["tail", "/dev/null"]
+ENTRYPOINT ["/db.sh"]
